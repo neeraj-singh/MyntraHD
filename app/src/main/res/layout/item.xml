@@ -97,8 +97,6 @@
         android:layout_height="150dp"
         android:layout_gravity="right"
         android:alpha="0"
-
-
         android:background="@drawable/nope" />
 
 </FrameLayout>
