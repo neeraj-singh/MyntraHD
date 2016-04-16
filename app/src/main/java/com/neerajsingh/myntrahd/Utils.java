@@ -71,4 +71,8 @@ public class Utils {
         }
         return R.drawable.a;
     }
+
+    public static boolean isNullOrEmpty(String str){
+        return str==null || str.length()<=0 || str.equalsIgnoreCase("null");
+    }
 }
