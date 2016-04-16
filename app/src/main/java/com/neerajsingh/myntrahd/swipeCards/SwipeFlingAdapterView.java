@@ -1,4 +1,4 @@
-package com.neerajsingh.myntrahd.tindercard;
+package com.neerajsingh.myntrahd.swipeCards;
 
 import android.annotation.TargetApi;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package com.neerajsingh.myntrahd.tindercard;
+package com.neerajsingh.myntrahd.swipeCards;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

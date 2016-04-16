@@ -2,6 +2,7 @@ package com.neerajsingh.myntrahd;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,20 +12,19 @@ import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.VideoView;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayer.PlayerStyle;
 import com.google.android.youtube.player.YouTubePlayerView;
-import com.neerajsingh.myntrahd.tindercard.SwipeFlingAdapterView;
+import com.neerajsingh.myntrahd.swipeCards.SwipeFlingAdapterView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SwipeActivity extends YouTubeBaseActivity
-         {
+{
 
     private static final int RECOVERY_DIALOG_REQUEST = 1;
     public static MyAppAdapter myAppAdapter;
@@ -39,20 +39,26 @@ public class SwipeActivity extends YouTubeBaseActivity
         setContentView(R.layout.activity_swipe);
 
 
-
+        findViewById(R.id.parentPanel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SwipeActivity.this,VideoViewActivity.class);
+                startActivity(intent);
+            }
+        });
 
         flingContainer = (SwipeFlingAdapterView) findViewById(R.id.frame);
 
         itemList = new ArrayList<>();
+        itemList.add(new Data("lXcJFVy1pKc", "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness."));
+        itemList.add(new Data("b8B-5Ec3gEs", "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness."));
         itemList.add(new Data("http://i.ytimg.com/vi/PnxsTxV8y3g/maxresdefault.jpg", "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness."));
-        itemList.add(new Data("http://switchboard.nrdc.org/blogs/dlashof/mission_impossible_4-1.jpg", "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness."));
-        itemList.add(new Data("http://i.ytimg.com/vi/PnxsTxV8y3g/maxresdefault.jpg", "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness."));
-        itemList.add(new Data("http://switchboard.nrdc.org/blogs/dlashof/mission_impossible_4-1.jpg", "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness."));
-        itemList.add(new Data("http://i.ytimg.com/vi/PnxsTxV8y3g/maxresdefault.jpg", "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness."));
-        itemList.add(new Data("http://switchboard.nrdc.org/blogs/dlashof/mission_impossible_4-1.jpg", "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness."));
-        itemList.add(new Data("http://i.ytimg.com/vi/PnxsTxV8y3g/maxresdefault.jpg", "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness."));
-        itemList.add(new Data("http://switchboard.nrdc.org/blogs/dlashof/mission_impossible_4-1.jpg", "Modakies"));
-        itemList.add(new Data("http://i.ytimg.com/vi/PnxsTxV8y3g/maxresdefault.jpg", "Neerajs"));
+//        itemList.add(new Data("http://switchboard.nrdc.org/blogs/dlashof/mission_impossible_4-1.jpg", "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness."));
+//        itemList.add(new Data("http://i.ytimg.com/vi/PnxsTxV8y3g/maxresdefault.jpg", "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness."));
+//        itemList.add(new Data("http://switchboard.nrdc.org/blogs/dlashof/mission_impossible_4-1.jpg", "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness."));
+//        itemList.add(new Data("http://i.ytimg.com/vi/PnxsTxV8y3g/maxresdefault.jpg", "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness."));
+//        itemList.add(new Data("http://switchboard.nrdc.org/blogs/dlashof/mission_impossible_4-1.jpg", "Modakies"));
+//        itemList.add(new Data("http://i.ytimg.com/vi/PnxsTxV8y3g/maxresdefault.jpg", "Neerajs"));
 
         myAppAdapter = new MyAppAdapter(itemList, SwipeActivity.this);
         flingContainer.setAdapter(myAppAdapter);
@@ -89,8 +95,8 @@ public class SwipeActivity extends YouTubeBaseActivity
 
                 View view = flingContainer.getSelectedView();
                 view.findViewById(R.id.background).setAlpha(0);
-//                view.findViewById(R.id.item_swipe_right_indicator).setAlpha(scrollProgressPercent < 0 ? -scrollProgressPercent : 0);
-//                view.findViewById(R.id.item_swipe_left_indicator).setAlpha(scrollProgressPercent > 0 ? scrollProgressPercent : 0);
+                view.findViewById(R.id.item_swipe_right_indicator).setAlpha(scrollProgressPercent < 0 ? -scrollProgressPercent : 0);
+                view.findViewById(R.id.item_swipe_left_indicator).setAlpha(scrollProgressPercent > 0 ? scrollProgressPercent : 0);
             }
         });
 
@@ -130,11 +136,11 @@ public class SwipeActivity extends YouTubeBaseActivity
         public FrameLayout background;
         public TextView DataText;
         public ImageView cardImage;
-        public VideoView videoView;
         public YouTubePlayerView youTubeView;// = (YouTubePlayerView) findViewById(R.id.youtube_view);
-
-        public ViewHolder(Context context) {
+        public String videoCode;
+        public ViewHolder(Context context,String videoCode) {
             this.context = context;
+            this.videoCode = videoCode;
         }
 
         //        // Initializing video player with developer key
@@ -145,10 +151,10 @@ public class SwipeActivity extends YouTubeBaseActivity
 
                 // loadVideo() will auto play video
                 // Use cueVideo() method, if you don't want to play it automatically
-                player.loadVideo(Config.YOUTUBE_VIDEO_CODE);
+                player.loadVideo(videoCode);
 
                 // Hiding player controls
-                player.setPlayerStyle(PlayerStyle.CHROMELESS);
+                player.setPlayerStyle(PlayerStyle.DEFAULT);
             }
         }
 
@@ -160,7 +166,7 @@ public class SwipeActivity extends YouTubeBaseActivity
 //                String errorMessage = String.format(
 //                        SwipeActivity.this.getString(R.string.error_player), errorReason.toString());
 //                Toast.makeText(SwipeActivity.this, errorMessage, Toast.LENGTH_LONG).show();
-                Log.e(TAG,"Unabel to load youtube player");
+                Log.e(TAG,"Unable to load youtube player");
             }
         }
 
@@ -202,7 +208,7 @@ public class SwipeActivity extends YouTubeBaseActivity
                 LayoutInflater inflater = getLayoutInflater();
                 rowView = inflater.inflate(R.layout.item, parent, false);
                 // configure view holder
-                viewHolder = new ViewHolder(context);
+                viewHolder = new ViewHolder(context,parkingList.get(position).getImagePath());
                 viewHolder.DataText = (TextView) rowView.findViewById(R.id.bookText);
                 viewHolder.background = (FrameLayout) rowView.findViewById(R.id.background);
                 viewHolder.youTubeView = (YouTubePlayerView)rowView.findViewById(R.id.youtube_view);
@@ -216,13 +222,8 @@ public class SwipeActivity extends YouTubeBaseActivity
             }
             viewHolder.DataText.setText(parkingList.get(position).getDescription() + "");
 
-//            viewHolder.
 //            Glide.with(SwipeActivity.this).load(parkingList.get(position).getImagePath()).into(viewHolder.cardImage);
 
-//            String vidAddress = "https://www.youtube.com/watch?v=lXcJFVy1pKc";
-//            Uri vidUri = Uri.parse(vidAddress);
-//            viewHolder.videoView.setVideoURI(vidUri);
-//            viewHolder.videoView.start();
             return rowView;
         }
     }
