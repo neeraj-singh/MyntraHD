@@ -1,4 +1,4 @@
-package com.neerajsingh.myntrahd.tindercard;
+package com.neerajsingh.myntrahd.swipeCards;
 
 import android.content.Context;
 import android.util.AttributeSet;
