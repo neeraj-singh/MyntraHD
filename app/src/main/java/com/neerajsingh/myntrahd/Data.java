@@ -6,10 +6,7 @@ public class Data {
 
     private String imagePath;
 
-    public Data(String imagePath, String description) {
-        this.imagePath = imagePath;
-        this.description = description;
-    }
+    private String videoCode;
 
     public String getDescription() {
         return description;
@@ -19,4 +16,14 @@ public class Data {
         return imagePath;
     }
 
+    public String getVideoCode() {
+        return videoCode;
+
+    }
+
+    public Data(String imagePath,String description,  String videoCode) {
+        this.description = description;
+        this.imagePath = imagePath;
+        this.videoCode = videoCode;
+    }
 }

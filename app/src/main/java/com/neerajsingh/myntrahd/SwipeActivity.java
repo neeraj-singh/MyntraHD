@@ -1,8 +1,8 @@
 package com.neerajsingh.myntrahd;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,12 +12,10 @@ import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.VideoView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.youtube.player.YouTubeBaseActivity;
-import com.google.android.youtube.player.YouTubeInitializationResult;
-import com.google.android.youtube.player.YouTubePlayer;
-import com.google.android.youtube.player.YouTubePlayer.PlayerStyle;
-import com.google.android.youtube.player.YouTubePlayerView;
 import com.neerajsingh.myntrahd.swipeCards.SwipeFlingAdapterView;
 
 import java.util.ArrayList;
@@ -26,7 +24,10 @@ import java.util.List;
 public class SwipeActivity extends YouTubeBaseActivity
 {
 
+    public static final String VIDEO_CODE = "videoCode";
+    public Context context;
     private static final int RECOVERY_DIALOG_REQUEST = 1;
+    private static final int VIDEO_SHOW_REQUEST = 1;
     public static MyAppAdapter myAppAdapter;
     public static ViewHolder viewHolder;
     private ArrayList<Data> itemList;
@@ -38,21 +39,15 @@ public class SwipeActivity extends YouTubeBaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swipe);
 
+        context = this;
 
-        findViewById(R.id.parentPanel).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SwipeActivity.this,VideoViewActivity.class);
-                startActivity(intent);
-            }
-        });
 
         flingContainer = (SwipeFlingAdapterView) findViewById(R.id.frame);
 
         itemList = new ArrayList<>();
-        itemList.add(new Data("lXcJFVy1pKc", "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness."));
-        itemList.add(new Data("b8B-5Ec3gEs", "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness."));
-        itemList.add(new Data("http://i.ytimg.com/vi/PnxsTxV8y3g/maxresdefault.jpg", "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness."));
+        itemList.add(new Data("http://i.ytimg.com/vi/PnxsTxV8y3g/maxresdefault.jpg", "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.","a"));//lXcJFVy1pKc
+        itemList.add(new Data("http://img6a.flixcart.com/image/sari/n/y/c/1-1-ishinsp-b-131-ishin-400x400-imaecc97vwjkzwk7.jpeg", "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.","b"));//b8B-5Ec3gEs
+        itemList.add(new Data("http://i.ytimg.com/vi/PnxsTxV8y3g/maxresdefault.jpg", "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.","c"));
 //        itemList.add(new Data("http://switchboard.nrdc.org/blogs/dlashof/mission_impossible_4-1.jpg", "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness."));
 //        itemList.add(new Data("http://i.ytimg.com/vi/PnxsTxV8y3g/maxresdefault.jpg", "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness."));
 //        itemList.add(new Data("http://switchboard.nrdc.org/blogs/dlashof/mission_impossible_4-1.jpg", "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness."));
@@ -129,46 +124,13 @@ public class SwipeActivity extends YouTubeBaseActivity
 
 
 
-    public class ViewHolder implements YouTubePlayer.OnInitializedListener {
-        private final String TAG = ViewHolder.class.getSimpleName();
+    public class ViewHolder  {
 
-        Context context;
         public FrameLayout background;
         public TextView DataText;
         public ImageView cardImage;
-        public YouTubePlayerView youTubeView;// = (YouTubePlayerView) findViewById(R.id.youtube_view);
-        public String videoCode;
-        public ViewHolder(Context context,String videoCode) {
-            this.context = context;
-            this.videoCode = videoCode;
-        }
+        public VideoView videoView;
 
-        //        // Initializing video player with developer key
-//        youTubeView.initialize(Config.DEVELOPER_KEY, this);
-        @Override
-        public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer player, boolean wasRestored) {
-            if (!wasRestored) {
-
-                // loadVideo() will auto play video
-                // Use cueVideo() method, if you don't want to play it automatically
-                player.loadVideo(videoCode);
-
-                // Hiding player controls
-                player.setPlayerStyle(PlayerStyle.DEFAULT);
-            }
-        }
-
-        @Override
-        public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult errorReason) {
-            if (errorReason.isUserRecoverableError()) {
-                errorReason.getErrorDialog((Activity) context, RECOVERY_DIALOG_REQUEST).show();
-            } else {
-//                String errorMessage = String.format(
-//                        SwipeActivity.this.getString(R.string.error_player), errorReason.toString());
-//                Toast.makeText(SwipeActivity.this, errorMessage, Toast.LENGTH_LONG).show();
-                Log.e(TAG,"Unable to load youtube player");
-            }
-        }
 
     }
 
@@ -203,28 +165,58 @@ public class SwipeActivity extends YouTubeBaseActivity
 
             View rowView = convertView;
 
+
             if (rowView == null) {
 
                 LayoutInflater inflater = getLayoutInflater();
                 rowView = inflater.inflate(R.layout.item, parent, false);
                 // configure view holder
-                viewHolder = new ViewHolder(context,parkingList.get(position).getImagePath());
+                viewHolder = new ViewHolder();
                 viewHolder.DataText = (TextView) rowView.findViewById(R.id.bookText);
                 viewHolder.background = (FrameLayout) rowView.findViewById(R.id.background);
-                viewHolder.youTubeView = (YouTubePlayerView)rowView.findViewById(R.id.youtube_view);
-                viewHolder.youTubeView.initialize(Config.DEVELOPER_KEY, viewHolder);
-//                viewHolder.cardImage = (ImageView) rowView.findViewById(R.id.youtube_view);
-//                viewHolder.videoView = (VideoView) rowView.findViewById(R.id.cardImage);
+                viewHolder.cardImage = (ImageView) rowView.findViewById(R.id.cardImage);
+                viewHolder.videoView = (VideoView) rowView.findViewById(R.id.videoView);
                 rowView.setTag(viewHolder);
 
             } else {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
+            viewHolder.cardImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openActivity(position);
+                }
+            });
             viewHolder.DataText.setText(parkingList.get(position).getDescription() + "");
 
-//            Glide.with(SwipeActivity.this).load(parkingList.get(position).getImagePath()).into(viewHolder.cardImage);
+            Glide.with(SwipeActivity.this).load(parkingList.get(position).getImagePath()).into(viewHolder.cardImage);
 
             return rowView;
+        }
+
+        private void openActivity(int position) {
+            if (viewHolder.cardImage.getVisibility() == View.VISIBLE) {
+                Log.e("Neeraj", "Click event poisiton " + position);
+                Intent intent = new Intent(SwipeActivity.this,VideoViewActivity.class);
+                intent.putExtra(VIDEO_CODE, parkingList.get(position).getVideoCode());
+                startActivityForResult(intent,VIDEO_SHOW_REQUEST);
+            }
+//            viewHolder.cardImage.setVisibility(View.GONE);
+//            viewHolder.videoView.setVisibility(View.VISIBLE);
+//            viewHolder.videoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + getVideo(parkingList.get(position).getVideoCode())));
+//            viewHolder.videoView.start();
+        }
+
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK){
+            if(requestCode  == VIDEO_SHOW_REQUEST){
+
+            }
         }
     }
 }

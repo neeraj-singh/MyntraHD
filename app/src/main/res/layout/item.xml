@@ -12,8 +12,7 @@
     <FrameLayout
         android:id="@+id/background"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,35 +45,23 @@
         android:orientation="vertical">
 
         <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-            <!--<ImageView-->
-                <!--android:id="@+id/cardImage"-->
-                <!--android:layout_width="300dp"-->
-                <!--android:layout_height="200dp"-->
-                <!--android:padding="4dp"-->
-                <!--android:scaleType="centerCrop" />-->
-            <!--&lt;!&ndash;<VideoView&ndash;&gt;-->
-            <!--&lt;!&ndash;android:id="@+id/cardImage"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:layout_width="300dp"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:layout_height="200dp"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:padding="4dp"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:scaleType="centerCrop"/>&ndash;&gt;-->
-            <com.google.android.youtube.player.YouTubePlayerView
-                android:id="@+id/youtube_view"
+            <ImageView
+                android:id="@+id/cardImage"
                 android:layout_width="300dp"
                 android:layout_height="200dp"
-                 />
+                android:padding="10dp"
+                android:scaleType="fitCenter" />
+
         </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="top|center_horizontal"
-            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <ScrollView
@@ -101,7 +88,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:alpha="0"
-        android:visibility="gone"
+
         android:background="@drawable/like" />
 
     <View
@@ -110,7 +97,8 @@
         android:layout_height="150dp"
         android:layout_gravity="right"
         android:alpha="0"
-        android:visibility="gone"
+
+
         android:background="@drawable/nope" />
 
 </FrameLayout>
