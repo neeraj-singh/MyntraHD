@@ -1,5 +1,6 @@
 package com.neerajsingh.myntrahd.network;
 
+import com.neerajsingh.myntrahd.network.response.BidBasket;
 import com.neerajsingh.myntrahd.network.response.Product;
 
 import java.util.List;
@@ -17,4 +18,7 @@ public interface BaseRequestInterface {
 
     @GET("/addToBidBasket?")
     Call<Boolean> addBidForPid(@Query("uid") String uid, @Query("pid") String pid, @Query("bidAmt") String bidAmt);
+
+    @GET("/getBidBasket?")
+    Call<List<BidBasket>> getAllBiddedProductsWithStatus(@Query("uid") String uid);
 }

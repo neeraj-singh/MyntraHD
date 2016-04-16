@@ -52,4 +52,17 @@ public class BidBasket {
     public void setUnique(boolean isUnique) {
         this.isUnique = isUnique;
     }
+
+    @Override
+    public String toString() {
+        return "BidBasket{" +
+                "prodId=" + prodId +
+                ", uid='" + uid + '\'' +
+                ", displayImg='" + displayImg + '\'' +
+                ", prodTitle='" + prodTitle + '\'' +
+                ", mrp=" + mrp +
+                ", userBid=" + userBid +
+                ", isUnique=" + isUnique +
+                '}';
+    }
 }

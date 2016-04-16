@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class MyntraHDApplication extends Application{
 
-    public static final String BASE_URL = "http://10.0.13.68:8080";
+    public static final String BASE_URL = "http://10.0.13.68:8090";
     private static Retrofit retrofit;
     @Override
     public void onCreate() {

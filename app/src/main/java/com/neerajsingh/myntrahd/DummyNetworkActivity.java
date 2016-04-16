@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.neerajsingh.myntrahd.network.BaseRequestInterface;
+import com.neerajsingh.myntrahd.network.response.BidBasket;
 import com.neerajsingh.myntrahd.network.response.Product;
 
 import java.util.List;
@@ -21,7 +22,7 @@ import retrofit2.Response;
  */
 public class DummyNetworkActivity extends Activity{
     private static final String TAG = DummyNetworkActivity.class.getSimpleName();
-    private String uniqueId ;
+    private String uniqueId = null;
     public BaseRequestInterface baseRequestInterface;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public class DummyNetworkActivity extends Activity{
 
         Button button1 = (Button) findViewById(R.id.button1);
         Button button2 = (Button) findViewById(R.id.button2);
+        Button button3 = (Button) findViewById(R.id.button3);
 
         MyntraHDApplication.initializeRetrofit(MyntraHDApplication.BASE_URL);
         baseRequestInterface =
@@ -47,6 +49,13 @@ public class DummyNetworkActivity extends Activity{
             @Override
             public void onClick(View v) {
                 makeBidForProductRequest(getUniqueId(), "2", "345");
+            }
+        });
+
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getAllBiddedProductsForUId(getUniqueId());
             }
         });
     }
@@ -83,7 +92,28 @@ public class DummyNetworkActivity extends Activity{
         });
     }
 
+    public void getAllBiddedProductsForUId(String uniqueId){
+        Call<List<BidBasket>> bidBasketCall = baseRequestInterface.getAllBiddedProductsWithStatus(uniqueId);
+        bidBasketCall.enqueue(new Callback<List<BidBasket>>() {
+            @Override
+            public void onResponse(Call<List<BidBasket>> call, Response<List<BidBasket>> response) {
+                Log.d(TAG, "onResponse  isSuccessful : " + response.isSuccessful() + " response " + response.body().toString());
+                Toast.makeText(DummyNetworkActivity.this, "Response is [" + response.body().toString() + "]", Toast.LENGTH_LONG).show();
+
+            }
+
+            @Override
+            public void onFailure(Call<List<BidBasket>> call, Throwable t) {
+                Log.d(TAG, "onFailure  : " + call.toString());
+            }
+        });
+
+    }
     public String getUniqueId() {
-        return "1285";
+
+        if(uniqueId == null || uniqueId.length() == 0)
+            uniqueId  = AccountUtils.getAccontId(DummyNetworkActivity.this);
+        return uniqueId;
+
     }
 }
