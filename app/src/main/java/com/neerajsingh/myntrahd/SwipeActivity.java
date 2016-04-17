@@ -285,7 +285,7 @@ public class SwipeActivity extends YouTubeBaseActivity
     }
 
     private int getColorForPage() {
-        return Color.parseColor("#00FF00");
+        return Color.parseColor("#3F602B");
     }
 
     @Override
