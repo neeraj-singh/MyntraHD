@@ -154,21 +154,24 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="horizontal">
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="8"
-                        >
+                    <!--<android.support.design.widget.TextInputLayout-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="8"-->
+                        <!-->-->
                         <EditText
                             android:id="@+id/bid_field"
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="50dp"
                             android:hint="Bid lower than MRP"
                             android:inputType="number"
                             android:imeOptions="actionDone"
-                            android:textSize="18sp"
+                            android:textSize="17sp"
+                            android:textCursorDrawable="@drawable/cursor"
+                            android:layout_weight="8"
+                            android:background="@android:color/transparent"
                             />
-                    </android.support.design.widget.TextInputLayout>
+                    <!--</android.support.design.widget.TextInputLayout>-->
                     <Button
                         android:id="@+id/bidButton"
                         android:layout_width="0dp"
