@@ -1,15 +1,13 @@
 package com.neerajsingh.myntrahd;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.neerajsingh.myntrahd.network.BaseRequestInterface;
 import com.neerajsingh.myntrahd.network.response.Product;
 
 import java.util.ArrayList;
@@ -34,14 +32,26 @@ public class SplashActivity extends Activity {
         setContentView(R.layout.splash_activity);
 
         MyntraHDApplication.initializeRetrofit(MyntraHDApplication.BASE_URL);
-        showLoader();
 
-        fetchAllBiddableproduct(AccountUtils.getAccontId(SplashActivity.this));
+
+        new CountDownTimer(2000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                //nothing
+            }
+
+            public void onFinish() {
+                showLoader();
+                fetchAllBiddableproduct(AccountUtils.getAccontId(SplashActivity.this));
+            }
+        }.start();
+
+
     }
 
     private void showLoader() {
         progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Please wait....");
+        progressDialog.setMessage("");
         progressDialog.show();
     }
 

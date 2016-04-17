@@ -47,14 +47,14 @@
 
         <FrameLayout
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
 
             <ImageView
                 android:id="@+id/cardImage"
-                android:layout_width="300dp"
-                android:layout_height="200dp"
-                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
                 android:scaleType="fitCenter" />
 
         </FrameLayout>
@@ -82,7 +82,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="4dp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -145,46 +146,46 @@
                         android:gravity="center"
                         android:background="@color/not_avail"/>
                 </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="8"
-                        >
-                        <EditText
-                            android:id="@+id/bid_field"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:hint="Bid lower than MRP"
-                            android:inputType="number"
-                            android:imeOptions="actionDone"
-                            android:textSize="16sp"
-                            android:textCursorDrawable="@drawable/cursor"
-                            android:layout_weight="8"
-                            />
-                    </android.support.design.widget.TextInputLayout>
-                    <Button
-                        android:id="@+id/bidButton"
-                        android:layout_width="0dp"
-                        android:layout_height="50dp"
-                        android:layout_weight="3"
-                        android:text="Bid"
-                        android:layout_marginLeft="5dp"
-                        android:textColor="#361788"
-                        android:gravity="center"
-                        />
-                    <View
-                        android:id="@+id/is_unique"
-                        android:layout_width="30dp"
-                        android:layout_gravity="center"
-                        android:layout_marginRight="5dp"
-                        android:background="@color/not_unique"
-                        android:layout_height="30dp"/>
-                </LinearLayout>
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:gravity="center"-->
+                    <!--android:orientation="horizontal">-->
+                    <!--<android.support.design.widget.TextInputLayout-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="8"-->
+                        <!-->-->
+                        <!--<EditText-->
+                            <!--android:id="@+id/bid_field"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="50dp"-->
+                            <!--android:hint="Bid lower than MRP"-->
+                            <!--android:inputType="number"-->
+                            <!--android:imeOptions="actionDone"-->
+                            <!--android:textSize="16sp"-->
+                            <!--android:textCursorDrawable="@drawable/cursor"-->
+                            <!--android:layout_weight="8"-->
+                            <!--/>-->
+                    <!--</android.support.design.widget.TextInputLayout>-->
+                    <!--<Button-->
+                        <!--android:id="@+id/bidButton"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="50dp"-->
+                        <!--android:layout_weight="3"-->
+                        <!--android:text="Bid"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:textColor="#361788"-->
+                        <!--android:gravity="center"-->
+                        <!--/>-->
+                    <!--<View-->
+                        <!--android:id="@+id/is_unique"-->
+                        <!--android:layout_width="30dp"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--android:layout_marginRight="5dp"-->
+                        <!--android:background="@color/not_unique"-->
+                        <!--android:layout_height="30dp"/>-->
+                <!--</LinearLayout>-->
 
             </LinearLayout>
         </ScrollView>
