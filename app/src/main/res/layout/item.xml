@@ -7,7 +7,7 @@
     android:layout_marginBottom="48dp"
     android:layout_marginLeft="20dp"
     android:layout_marginRight="20dp"
-    android:layout_marginTop="64dp">
+    android:layout_marginTop="24dp">
 
     <FrameLayout
         android:id="@+id/background"
@@ -57,28 +57,141 @@
                 android:scaleType="fitCenter" />
 
         </FrameLayout>
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:gravity="top|center_horizontal"-->
+        <!--android:orientation="horizontal">-->
 
-        <LinearLayout
+
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="top|center_horizontal"
-            android:orientation="horizontal">
+            android:gravity="top|center_horizontal">
 
-            <ScrollView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
+                android:layout_height="match_parent"
+                android:orientation="vertical">
                 <TextView
-                    android:id="@+id/bookText"
+                    android:id="@+id/prod_tittle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="left"
                     android:padding="4dp"
+                    android:text="Hoodi"
                     android:textColor="#787878"
                     android:textSize="16sp"
-                    tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
-            </ScrollView>
-        </LinearLayout>
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MRP"
+                        android:layout_gravity="left"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="\u20B9 700"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:layout_gravity="right"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/text_s"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:text="S"
+                        android:textSize="18sp"
+                        android:layout_margin="10dp"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:background="@color/not_avail"/>
+                    <TextView
+                        android:id="@+id/text_m"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:text="M"
+                        android:layout_margin="10dp"
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:background="@color/not_avail"/>
+                    <TextView
+                        android:id="@+id/text_l"
+                        android:layout_width="30dp"
+                        android:layout_margin="10dp"
+                        android:layout_height="30dp"
+                        android:text="L"
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:background="@color/not_avail"/>
+                    <TextView
+                        android:id="@+id/text_xl"
+                        android:layout_width="30dp"
+                        android:layout_margin="10dp"
+                        android:layout_height="30dp"
+                        android:text="XL"
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:background="@color/not_avail"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="8"
+                        >
+                        <EditText
+                            android:id="@+id/bid_field"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:hint="Bid lower than MRP"
+                            android:inputType="number"
+                            android:imeOptions="actionDone"
+                            android:textSize="18sp"
+                            />
+                    </android.support.design.widget.TextInputLayout>
+                    <Button
+                        android:id="@+id/bidButton"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="3"
+                        android:text="Bid"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="#361788"
+                        android:gravity="center"
+                        />
+                    <View
+                        android:id="@+id/is_unique"
+                        android:layout_width="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="5dp"
+                        android:background="@color/not_unique"
+                        android:layout_height="30dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <!--</LinearLayout>-->
 
     </LinearLayout>
 
@@ -97,8 +210,6 @@
         android:layout_height="150dp"
         android:layout_gravity="right"
         android:alpha="0"
-
-
         android:background="@drawable/nope" />
 
 </FrameLayout>

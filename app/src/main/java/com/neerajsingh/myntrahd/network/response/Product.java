@@ -1,9 +1,13 @@
 package com.neerajsingh.myntrahd.network.response;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Product {
+public class Product implements Parcelable{
 
     private Long prodId;
     private String displayImg;
@@ -23,6 +27,7 @@ public class Product {
         this.prodId = prodId;
     }
     public String getDisplayImg() {
+
         return displayImg;
     }
     public void setDisplayImg(String displayImg) {
@@ -100,5 +105,15 @@ public class Product {
                 ", usersBidded=" + usersBidded +
                 ", bidAmount=" + bidAmount +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
     }
 }

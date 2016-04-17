@@ -5,4 +5,8 @@
     <color name="colorAccent">#FF4081</color>
     <color name="shadow">#555555</color>
     <color name="title">#777777</color>
+    <color name="not_avail">#666666</color>
+    <color name="white">#FFFFFF</color>
+    <color name="green">#00FF00</color>
+    <color name="not_unique">#891230</color>
 </resources>

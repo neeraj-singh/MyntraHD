@@ -34,7 +34,7 @@ public class VideoViewActivity extends YouTubeBaseActivity implements YouTubePla
 //        youTubePlayerView = (YouTubePlayerView) findViewById(R.id.youtube_view);
 //        youTubePlayerView.initialize(Config.DEVELOPER_KEY, VideoViewActivity.this);
         videoView = (VideoView) findViewById(R.id.videoView);
-        videoView.setVideoURI(Uri.parse("android.resource://"+getPackageName()+"/"+getVideo(videoCode)));
+        videoView.setVideoURI(Uri.parse("android.resource://"+getPackageName()+"/"+Utils.getVideo(videoCode)));
         videoView.start();
     }
 
@@ -74,40 +74,6 @@ public class VideoViewActivity extends YouTubeBaseActivity implements YouTubePla
 
     private YouTubePlayer.Provider getYouTubePlayerProvider() {
         return (YouTubePlayerView) findViewById(R.id.youtube_view);
-    }
-
-    private int getVideo(String videoCode) {
-        if(videoCode.equalsIgnoreCase("a")){
-            return R.raw.a;
-        }
-
-        if(videoCode.equalsIgnoreCase("b")){
-            return R.raw.b;
-        }
-        if(videoCode.equalsIgnoreCase("c")){
-            return R.raw.c;
-        }
-        if(videoCode.equalsIgnoreCase("d")){
-            return R.raw.d;
-        }if(videoCode.equalsIgnoreCase("e")){
-            return R.raw.e;
-        }
-        if(videoCode.equalsIgnoreCase("f")){
-            return R.raw.f;
-        }
-        if(videoCode.equalsIgnoreCase("g")){
-            return R.raw.g;
-        }
-        if(videoCode.equalsIgnoreCase("h")){
-            return R.raw.h;
-        }
-        if(videoCode.equalsIgnoreCase("i")){
-            return R.raw.i;
-        }
-        if(videoCode.equalsIgnoreCase("j")){
-            return R.raw.j;
-        }
-        return R.raw.a;
     }
 
 
