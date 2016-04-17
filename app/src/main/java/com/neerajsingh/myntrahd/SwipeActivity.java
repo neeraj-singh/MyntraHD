@@ -1,5 +1,6 @@
 package com.neerajsingh.myntrahd;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -42,7 +43,7 @@ public class SwipeActivity extends YouTubeBaseActivity
     public static ViewHolder viewHolder;
     private ArrayList<Product> itemList;
     private SwipeFlingAdapterView flingContainer;
-
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,8 +94,11 @@ public class SwipeActivity extends YouTubeBaseActivity
 //                    String bid = viewHolder.bidField.getText().toString();
 
 //                    if (!Utils.isNullOrEmpty(bid)) {
+                makeBidForProductRequest(AccountUtils.getAccontId(SwipeActivity.this), itemList.get(0).getProdId().toString(), "0");
                 itemList.remove(0);
+
                 myAppAdapter.notifyDataSetChanged();
+
 //                    } else {
 //                        viewHolder.bidField.setError("Enter bid to select item");
 //                    }
@@ -221,9 +225,9 @@ public class SwipeActivity extends YouTubeBaseActivity
                 viewHolder.sizeM = (TextView) rowView.findViewById(R.id.text_m);
                 viewHolder.sizeL = (TextView) rowView.findViewById(R.id.text_l);
                 viewHolder.sizeXL = (TextView) rowView.findViewById(R.id.text_xl);
-                viewHolder.isUnique = rowView.findViewById(R.id.is_unique);
-                viewHolder.bidButton = (Button) rowView.findViewById(R.id.bidButton);
-                viewHolder.bidField = (EditText) rowView.findViewById(R.id.bid_field);
+//                viewHolder.isUnique = rowView.findViewById(R.id.is_unique);
+//                viewHolder.bidButton = (Button) rowView.findViewById(R.id.bidButton);
+//                viewHolder.bidField = (EditText) rowView.findViewById(R.id.bid_field);
                 rowView.setTag(viewHolder);
 
             } else {
@@ -254,19 +258,19 @@ public class SwipeActivity extends YouTubeBaseActivity
 
 //            Glide.with(SwipeActivity.this).load(parkingList.get(position).getImagePath()).into(viewHolder.cardImage);
             viewHolder.cardImage.setImageResource(Utils.getProdImage(parkingList.get(position).getDisplayImg()));
-            final EditText editText = (EditText) rowView.findViewById(R.id.bid_field);
-            viewHolder.bidButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String bid = editText.getText().toString();
-                    Log.e("Neeraj","bid value at position : "+bid);
-                    if(!Utils.isNullOrEmpty(bid)) {
-                        makeBidForProductRequest(AccountUtils.getAccontId(context), parkingList.get(position).getProdId().toString(),bid );
-                    }else{
-                        editText.setError("Enter bid");
-                    }
-                }
-            });
+//            final EditText editText = (EditText) rowView.findViewById(R.id.bid_field);
+//            viewHolder.bidButton.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+////                    String bid = editText.getText().toString();
+//                    Log.e("Neeraj","bid value at position : "+bid);
+//                    if(!Utils.isNullOrEmpty(bid)) {
+//                        makeBidForProductRequest(AccountUtils.getAccontId(context), parkingList.get(position).getProdId().toString(),bid );
+//                    }else{
+////                        editText.setError("Enter bid");
+//                    }
+//                }
+//            });
             return rowView;
         }
 
@@ -298,16 +302,18 @@ public class SwipeActivity extends YouTubeBaseActivity
 
         Log.e("Neeraj ","Called bidfor product");
         Call<Boolean> addBidForProduct = baseRequestInterface.addBidForPid(uniqueId, productId, bidAmount);
+        showLoader();
         addBidForProduct.enqueue(new Callback<Boolean>() {
             @Override
             public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                if(response!=null && response.body()!=null) {
+                if (response != null && response.body() != null) {
                     Toast.makeText(SwipeActivity.this, "Response is [" + ((Boolean) response.body()).booleanValue() + "]", Toast.LENGTH_LONG).show();
-                    if (((Boolean) response.body())) {
-                        viewHolder.isUnique.setBackgroundColor(getColorForPage());
-                    } else {
-                        viewHolder.isUnique.setBackgroundColor(getColorForPage());
-                    }
+//                    if (((Boolean) response.body())) {
+//                        viewHolder.isUnique.setBackgroundColor(getColorForPage());
+//                    } else {
+//                        viewHolder.isUnique.setBackgroundColor(getColorForPage());
+//                    }
+                    hideLoader();
                 }
             }
 
@@ -317,5 +323,16 @@ public class SwipeActivity extends YouTubeBaseActivity
             }
         });
 
+    }
+
+    public void showLoader() {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Please wait....");
+        progressDialog.show();
+    }
+    public void hideLoader(){
+        if(progressDialog!=null && progressDialog.isShowing()){
+            progressDialog.hide();
+        }
     }
 }
