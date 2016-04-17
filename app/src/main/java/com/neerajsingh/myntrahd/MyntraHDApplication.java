@@ -2,6 +2,8 @@ package com.neerajsingh.myntrahd;
 
 import android.app.Application;
 
+import com.neerajsingh.myntrahd.network.BaseRequestInterface;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -12,11 +14,13 @@ public class MyntraHDApplication extends Application{
 
     public static final String BASE_URL = "http://10.0.13.68:8090";
     private static Retrofit retrofit;
+    public static BaseRequestInterface baseRequestInterface;
     @Override
     public void onCreate() {
         super.onCreate();
 
         initializeRetrofit(BASE_URL);
+
 
     }
 
@@ -25,10 +29,16 @@ public class MyntraHDApplication extends Application{
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        baseRequestInterface =
+                MyntraHDApplication.getRetrofit().create(BaseRequestInterface.class);
     }
 
 
     public static Retrofit getRetrofit() {
         return retrofit;
+    }
+
+    public static BaseRequestInterface getBaseRequestInterface() {
+        return baseRequestInterface;
     }
 }

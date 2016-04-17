@@ -1,6 +1,7 @@
 package com.neerajsingh.myntrahd;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,7 +24,7 @@ import retrofit2.Response;
 public class DummyNetworkActivity extends Activity{
     private static final String TAG = DummyNetworkActivity.class.getSimpleName();
     private String uniqueId = null;
-    public BaseRequestInterface baseRequestInterface;
+    public static BaseRequestInterface baseRequestInterface;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +33,7 @@ public class DummyNetworkActivity extends Activity{
         Button button1 = (Button) findViewById(R.id.button1);
         Button button2 = (Button) findViewById(R.id.button2);
         Button button3 = (Button) findViewById(R.id.button3);
+        Button button4 = (Button) findViewById(R.id.button4);
 
         MyntraHDApplication.initializeRetrofit(MyntraHDApplication.BASE_URL);
         baseRequestInterface =
@@ -49,6 +51,10 @@ public class DummyNetworkActivity extends Activity{
             @Override
             public void onClick(View v) {
                 makeBidForProductRequest(getUniqueId(), "2", "345");
+                makeBidForProductRequest(getUniqueId(), "3", "10000");
+                makeBidForProductRequest(getUniqueId(), "4", "123");
+                makeBidForProductRequest(getUniqueId(), "5", "100");
+                makeBidForProductRequest(getUniqueId(), "6", "560");
             }
         });
 
@@ -56,6 +62,14 @@ public class DummyNetworkActivity extends Activity{
             @Override
             public void onClick(View v) {
                 getAllBiddedProductsForUId(getUniqueId());
+            }
+        });
+
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DummyNetworkActivity.this, BiddingStatusBoardActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -109,7 +123,7 @@ public class DummyNetworkActivity extends Activity{
         });
 
     }
-    public String getUniqueId() {
+    public  String getUniqueId() {
 
         if(uniqueId == null || uniqueId.length() == 0)
             uniqueId  = AccountUtils.getAccontId(DummyNetworkActivity.this);

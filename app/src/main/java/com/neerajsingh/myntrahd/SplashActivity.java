@@ -28,15 +28,12 @@ public class SplashActivity extends Activity {
     ProgressDialog progressDialog;
     private static final String TAG = SplashActivity.class.getSimpleName();
     public static final String PROD_LIST = "prodList";
-    public BaseRequestInterface baseRequestInterface;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_activity);
 
         MyntraHDApplication.initializeRetrofit(MyntraHDApplication.BASE_URL);
-        baseRequestInterface =
-                MyntraHDApplication.getRetrofit().create(BaseRequestInterface.class);
         showLoader();
 
         fetchAllBiddableproduct(AccountUtils.getAccontId(SplashActivity.this));
@@ -55,7 +52,7 @@ public class SplashActivity extends Activity {
     }
 
     private void fetchAllBiddableproduct(String uniqueId) {
-        Call<List<Product>> productList = baseRequestInterface.getListOfAllBiddableProducts(uniqueId);
+        Call<List<Product>> productList = MyntraHDApplication.getBaseRequestInterface().getListOfAllBiddableProducts(uniqueId);
         productList.enqueue(new Callback<List<Product>>() {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
