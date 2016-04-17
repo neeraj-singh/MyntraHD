@@ -23,6 +23,6 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Make bid request"
+        android:text="Launch Grid page"
         android:id="@+id/button4" />
 </LinearLayout>

@@ -61,7 +61,9 @@ public class DummyNetworkActivity extends Activity{
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getAllBiddedProductsForUId(getUniqueId());
+//                getAllBiddedProductsForUId(getUniqueId());
+//                addAndGetUpdatedBidBasket(getUniqueId(), "2", "987");
+                getBidsWonByUser(getUniqueId());
             }
         });
 
@@ -108,6 +110,42 @@ public class DummyNetworkActivity extends Activity{
 
     public void getAllBiddedProductsForUId(String uniqueId){
         Call<List<BidBasket>> bidBasketCall = baseRequestInterface.getAllBiddedProductsWithStatus(uniqueId);
+        bidBasketCall.enqueue(new Callback<List<BidBasket>>() {
+            @Override
+            public void onResponse(Call<List<BidBasket>> call, Response<List<BidBasket>> response) {
+                Log.d(TAG, "onResponse  isSuccessful : " + response.isSuccessful() + " response " + response.body().toString());
+                Toast.makeText(DummyNetworkActivity.this, "Response is [" + response.body().toString() + "]", Toast.LENGTH_LONG).show();
+
+            }
+
+            @Override
+            public void onFailure(Call<List<BidBasket>> call, Throwable t) {
+                Log.d(TAG, "onFailure  : " + call.toString());
+            }
+        });
+
+    }
+
+    public void addAndGetUpdatedBidBasket(String uniqueId, String productId, String bidAmount){
+        Call<List<BidBasket>> bidBasketCall = baseRequestInterface.addAndGetUpdatedBidBasket(uniqueId, productId, bidAmount);
+        bidBasketCall.enqueue(new Callback<List<BidBasket>>() {
+            @Override
+            public void onResponse(Call<List<BidBasket>> call, Response<List<BidBasket>> response) {
+                Log.d(TAG, "onResponse  isSuccessful : " + response.isSuccessful() + " response " + response.body().toString());
+                Toast.makeText(DummyNetworkActivity.this, "Response is [" + response.body().toString() + "]", Toast.LENGTH_LONG).show();
+
+            }
+
+            @Override
+            public void onFailure(Call<List<BidBasket>> call, Throwable t) {
+                Log.d(TAG, "onFailure  : " + call.toString());
+            }
+        });
+
+    }
+
+    public void getBidsWonByUser(String uniqueId){
+        Call<List<BidBasket>> bidBasketCall = baseRequestInterface.getBidsWonByUser(uniqueId);
         bidBasketCall.enqueue(new Callback<List<BidBasket>>() {
             @Override
             public void onResponse(Call<List<BidBasket>> call, Response<List<BidBasket>> response) {

@@ -21,4 +21,12 @@ public interface BaseRequestInterface {
 
     @GET("/getBidBasket?")
     Call<List<BidBasket>> getAllBiddedProductsWithStatus(@Query("uid") String uid);
+
+
+    @GET("/addAndgetBidBasket?")
+    Call<List<BidBasket>> addAndGetUpdatedBidBasket(@Query("uid") String uid, @Query("pid") String pid, @Query("bidAmt") String bidAmt);
+
+
+    @GET("/getWinBids?")
+    Call<List<BidBasket>> getBidsWonByUser(@Query("uid") String uid);
 }

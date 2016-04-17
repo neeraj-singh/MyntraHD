@@ -50,7 +50,7 @@ public class BiddingStatusBoardActivity extends Activity{
         bidBasketCall.enqueue(new Callback<List<BidBasket>>() {
             @Override
             public void onResponse(Call<List<BidBasket>> call, Response<List<BidBasket>> response) {
-                Log.d(TAG, "onResponse  isSuccessful : " + response.isSuccessful() + " response " + response.body().toString());
+//                Log.d(TAG, "onResponse  isSuccessful : " + response.isSuccessful() + " response " + response.body().toString());
                 Toast.makeText(BiddingStatusBoardActivity.this, "Response is [" + response.body().toString() + "]", Toast.LENGTH_LONG).show();
                 progressDialog.dismiss();
                 bidBasketList = (ArrayList<BidBasket>)response.body();
