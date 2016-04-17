@@ -90,14 +90,15 @@ public class SwipeActivity extends YouTubeBaseActivity
 
             @Override
             public void onRightCardExit(Object dataObject) {
-                String bid = viewHolder.bidField.getText().toString();
+//                    String bid = viewHolder.bidField.getText().toString();
 
-                if(!Utils.isNullOrEmpty(bid)) {
-                    itemList.remove(0);
-                    myAppAdapter.notifyDataSetChanged();
-                }else{
-                    viewHolder.bidField.setError("Enter bid to select item");
-                }
+//                    if (!Utils.isNullOrEmpty(bid)) {
+                itemList.remove(0);
+                myAppAdapter.notifyDataSetChanged();
+//                    } else {
+//                        viewHolder.bidField.setError("Enter bid to select item");
+//                    }
+
             }
 
             @Override
@@ -128,6 +129,20 @@ public class SwipeActivity extends YouTubeBaseActivity
             }
         });
 
+        Button btn = (Button) findViewById(R.id.btnGoBidpage);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openBiddingPage();
+            }
+        });
+
+    }
+
+    private void openBiddingPage() {
+        Intent intent = new Intent(SwipeActivity.this,BiddingStatusBoardActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     public void onActionDownPerform() {
@@ -239,14 +254,16 @@ public class SwipeActivity extends YouTubeBaseActivity
 
 //            Glide.with(SwipeActivity.this).load(parkingList.get(position).getImagePath()).into(viewHolder.cardImage);
             viewHolder.cardImage.setImageResource(Utils.getProdImage(parkingList.get(position).getDisplayImg()));
+            final EditText editText = (EditText) rowView.findViewById(R.id.bid_field);
             viewHolder.bidButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String bid = viewHolder.bidField.getText().toString();
+                    String bid = editText.getText().toString();
+                    Log.e("Neeraj","bid value at position : "+bid);
                     if(!Utils.isNullOrEmpty(bid)) {
                         makeBidForProductRequest(AccountUtils.getAccontId(context), parkingList.get(position).getProdId().toString(),bid );
                     }else{
-                        viewHolder.bidField.setError("Enter bid");
+                        editText.setError("Enter bid");
                     }
                 }
             });
@@ -278,7 +295,9 @@ public class SwipeActivity extends YouTubeBaseActivity
     }
 
     private void makeBidForProductRequest(String uniqueId, String productId, String bidAmount) {
-        Call<Boolean> addBidForProduct = baseRequestInterface.addBidForPid(AccountUtils.getAccontId(this), productId, bidAmount);
+
+        Log.e("Neeraj ","Called bidfor product");
+        Call<Boolean> addBidForProduct = baseRequestInterface.addBidForPid(uniqueId, productId, bidAmount);
         addBidForProduct.enqueue(new Callback<Boolean>() {
             @Override
             public void onResponse(Call<Boolean> call, Response<Boolean> response) {
@@ -297,5 +316,6 @@ public class SwipeActivity extends YouTubeBaseActivity
                 Log.d(TAG, "onFailure  : " + call.toString());
             }
         });
+
     }
 }

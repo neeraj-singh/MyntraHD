@@ -22,6 +22,14 @@
             android:layout_height="match_parent"
             android:background="@drawable/background"
             app:rotation_degrees="15.5" />
+        <Button
+            android:id="@+id/btnGoBidpage"
+            android:text="go to bid page"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:visibility="visible"/>
 
     </FrameLayout>
 
