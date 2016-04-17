@@ -13,25 +13,27 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-        <activity android:name=".SwipeActivity">
+        <activity android:name=".SwipeActivity"
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name=".VideoViewActivity">
+        <activity android:name=".VideoViewActivity"
+            android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name=".DummyNetworkActivity">
+        <activity android:name=".DummyNetworkActivity"
+            android:screenOrientation="portrait">
+
+
+        </activity>
+        <activity android:name=".SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SplashActivity">
-            <!--<intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
-        </activity>
-        <activity android:name=".BiddingStatusBoardActivity"></activity>
     </application>
 
 </manifest>

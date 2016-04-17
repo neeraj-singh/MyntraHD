@@ -2,6 +2,7 @@ package com.neerajsingh.myntrahd;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -89,7 +90,7 @@ public class SwipeActivity extends YouTubeBaseActivity
 
             @Override
             public void onRightCardExit(Object dataObject) {
-                String bid = viewHolder.bidButton.getText().toString();
+                String bid = viewHolder.bidField.getText().toString();
 
                 if(!Utils.isNullOrEmpty(bid)) {
                     itemList.remove(0);
@@ -223,16 +224,16 @@ public class SwipeActivity extends YouTubeBaseActivity
             String []sizes = parkingList.get(position).getSizeAvail().split(",");
             for(String size : sizes){
                 if(size.equalsIgnoreCase("S")){
-                    viewHolder.sizeS.setBackgroundColor(context.getResources().getColor(R.color.green));
+                    viewHolder.sizeS.setBackgroundColor(getColorForPage());
                 }
                 if(size.equalsIgnoreCase("M")){
-                    viewHolder.sizeM.setBackgroundColor(context.getResources().getColor(R.color.green));
+                    viewHolder.sizeM.setBackgroundColor(getColorForPage());
                 }
                 if(size.equalsIgnoreCase("L")){
-                    viewHolder.sizeL.setBackgroundColor(context.getResources().getColor(R.color.green));
+                    viewHolder.sizeL.setBackgroundColor(getColorForPage());
                 }
                 if(size.equalsIgnoreCase("XL")){
-                    viewHolder.sizeXL.setBackgroundColor(context.getResources().getColor(R.color.green));
+                    viewHolder.sizeXL.setBackgroundColor(getColorForPage());
                 }
             }
 
@@ -262,6 +263,10 @@ public class SwipeActivity extends YouTubeBaseActivity
         }
     }
 
+    private int getColorForPage() {
+        return Color.parseColor("#00FF00");
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -280,9 +285,9 @@ public class SwipeActivity extends YouTubeBaseActivity
                 if(response!=null && response.body()!=null) {
                     Toast.makeText(SwipeActivity.this, "Response is [" + ((Boolean) response.body()).booleanValue() + "]", Toast.LENGTH_LONG).show();
                     if (((Boolean) response.body())) {
-                        viewHolder.isUnique.setBackgroundColor(SwipeActivity.this.getResources().getColor(R.color.green));
+                        viewHolder.isUnique.setBackgroundColor(getColorForPage());
                     } else {
-                        viewHolder.isUnique.setBackgroundColor(SwipeActivity.this.getResources().getColor(R.color.green));
+                        viewHolder.isUnique.setBackgroundColor(getColorForPage());
                     }
                 }
             }
