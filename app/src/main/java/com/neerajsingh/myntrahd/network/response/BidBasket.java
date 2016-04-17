@@ -9,6 +9,7 @@ public class BidBasket {
     private String prodTitle;
     private Long mrp;
     private Long userBid;
+    private boolean isLowest;
     private boolean isUnique;
     public Long getProdId() {
         return prodId;
@@ -53,6 +54,14 @@ public class BidBasket {
         this.isUnique = isUnique;
     }
 
+    public boolean isLowest() {
+        return isLowest;
+    }
+
+    public void setIsLowest(boolean isLowest) {
+        this.isLowest = isLowest;
+    }
+
     @Override
     public String toString() {
         return "BidBasket{" +
@@ -62,6 +71,7 @@ public class BidBasket {
                 ", prodTitle='" + prodTitle + '\'' +
                 ", mrp=" + mrp +
                 ", userBid=" + userBid +
+                ", isLowest=" + isLowest +
                 ", isUnique=" + isUnique +
                 '}';
     }

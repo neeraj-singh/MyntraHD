@@ -15,6 +15,9 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:inputType="number"
+        android:imeOptions="actionDone"
+        android:textCursorDrawable="@drawable/cursor"
         android:id="@+id/bidEditText"/>
     <Button
         android:layout_width="70dp"

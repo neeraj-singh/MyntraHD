@@ -46,7 +46,7 @@ public class BiddingStatusBoardActivity extends Activity{
     }
 
     public void getAllBiddedProductsForUId(String uniqueId){
-        Call<List<BidBasket>> bidBasketCall = DummyNetworkActivity.baseRequestInterface.getAllBiddedProductsWithStatus(uniqueId);
+        Call<List<BidBasket>> bidBasketCall = MyntraHDApplication.getBaseRequestInterface().getAllBiddedProductsWithStatus(uniqueId);
         bidBasketCall.enqueue(new Callback<List<BidBasket>>() {
             @Override
             public void onResponse(Call<List<BidBasket>> call, Response<List<BidBasket>> response) {
