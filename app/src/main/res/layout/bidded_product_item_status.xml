@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@drawable/button_black_stoke_released"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/like"
+        android:id="@+id/product_image"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_marginLeft="6dp"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/productName"
+            android:text="ProductName"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginRight="6dp"
+            android:layout_alignParentRight="true"
+            android:id="@+id/productPrice"
+            android:text="Rs 100"
+            />
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:id="@+id/yourBid"
+        android:text="Your bid is amount $1s"
+        />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:visibility="visible"
+            android:id="@+id/negetiveLayoutWrapper"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#FF0000"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/negetiveBidStatus"
+                android:text="Your bid not unique"
+                />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:layout_alignParentRight="true"
+                android:id="@+id/bidAgainButton"
+                android:text="Bid again"
+                />
+        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:layout_gravity="center"
+            android:id="@+id/positiveBidStatus"
+            android:textColor="#32CD32"
+            android:text="Your bid is unique"
+            />
+    </FrameLayout>
+
+</LinearLayout>
